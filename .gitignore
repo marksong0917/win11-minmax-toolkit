@@ -1,0 +1,2 @@
+# Toolkit run logs stay on the machine that ran it
+*.log
