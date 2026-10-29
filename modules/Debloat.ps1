@@ -47,4 +47,5 @@ function Invoke-Debloat {
         }
     }
     Write-Log -Message "Debloat done. Removed $removed package(s). Reinstall any of them from the Microsoft Store." -Level OK
+    Write-Log -Message 'Note: removal is for the current user. Provisioned copies can still appear for NEW user accounts - that is deliberate (removing provisioned packages is where debloat tools start breaking Windows).' -Level Warn
 }

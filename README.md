@@ -39,11 +39,33 @@ Set-ExecutionPolicy -Scope Process Bypass
 .\MinMax.ps1
 ```
 
-5. Pick from the menu — or run it all at once:
+5. Not sure yet? Preview the whole plan first — this changes nothing and needs no admin rights:
+
+```powershell
+.\MinMax.ps1 -DryRun  # print every change it would make, then exit
+```
+
+6. Pick from the menu (it asks before applying each module) — or run it all at once:
 
 ```powershell
 .\MinMax.ps1 -All     # apply modules 1-4 non-interactively
 .\MinMax.ps1 -Undo    # revert everything to Windows defaults
+```
+
+A normal run looks like this:
+
+```text
+==============================================
+  Win11 MinMax Toolkit v1.0.0
+  Min-max, but safe: reversible tweaks only.
+==============================================
+[13:02:11] [OK] Administrator check passed.
+[13:02:11] [OK] Windows 11 check passed.
+[13:02:12] [OK] Restore point created.
+Choose: 2
+Apply Privacy now? Type Y to continue: Y
+[13:02:20] [INFO] Set HKCU:\...\AdvertisingInfo\Enabled = 0 (DWord)
+...
 ```
 
 Restart when it finishes. Requirements: Windows 11 (build 22000+), PowerShell 5.1+ (built into Windows 11), administrator rights.
@@ -80,6 +102,9 @@ It removes background noise (DVR recording, consumer app clutter, animation over
 
 **Will Windows Update undo the tweaks?**
 Feature updates sometimes reset user preferences. Re-running the toolkit is safe (it takes a fresh restore point each time); Undo still works afterwards.
+
+**I created a new user account and the bloat apps are back. Why?**
+Debloat removes apps for the *current* user only. Windows keeps "provisioned" copies that install for each new account. Removing provisioned packages is exactly where aggressive debloat tools start breaking Windows, so this toolkit deliberately does not do it — just run it once under the new account.
 
 ## What this is not
 

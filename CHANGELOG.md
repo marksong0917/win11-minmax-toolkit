@@ -12,6 +12,10 @@ First release — the script companion to the
   mandatory System Restore point before any change (refuses to run if
   creation fails), numbered menu, `-All` and `-Undo` switches, and a
   timestamped log file for every run.
+- `-DryRun` switch: prints the full change plan and exits — changes
+  nothing, needs no administrator rights and no restore point.
+- Menu mode asks for a typed `Y` confirmation before applying any
+  module, and the exit message states whether anything was changed.
 - `modules/Debloat.ps1` — removes 16 preinstalled consumer apps (stubs,
   bundled games, trial apps) for the current user; skips anything absent.
 - `modules/Privacy.ps1` — telemetry to Basic, advertising ID off, activity
